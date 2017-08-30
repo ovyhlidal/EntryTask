@@ -13,13 +13,20 @@ import UIKit
 
 class FlightsPageViewController: UIPageViewController {
     
-    private(set) lazy var mockViewControllers :[UIViewController] = {
-        return [ UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FlightDetailsViewController"),
-                 UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FlightDetailsViewController"),
-                 self.instantiateViewController(),
-                 self.instantiateViewController()]
+    
+    private(set) lazy var mockViewControllers :[FlightDetailsViewController] = {
+        return [   self.instantiateViewController(),
+                   self.instantiateViewController(),
+                   self.instantiateViewController(),
+                   self.instantiateViewController(),
+                   self.instantiateViewController()]
     }()
-
+    
+    
+    
+    let datasource = FlightsDatasource()
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -35,18 +42,32 @@ class FlightsPageViewController: UIPageViewController {
                                 //
             })
         }
+        
+        datasource.onComplete = { data in
+            self.refreshControllerData(data: data)
+        }
+        
+        datasource.refreshFlightsInfo()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    private func instantiateViewController() -> UIViewController {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FlightDetailsViewController")
+    private func instantiateViewController() -> FlightDetailsViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FlightDetailsViewController") as! FlightDetailsViewController
     }
-
-
+    
+    func refreshControllerData(data: [FlightModel]) -> Void {
+        
+        mockViewControllers[0].refreshData(data:data[0])
+//        mockViewControllers[1].refreshData(data:data[1])
+//        mockViewControllers[2].refreshData(data:data[2])
+//        mockViewControllers[3].refreshData(data:data[3])
+//        mockViewControllers[4].refreshData(data:data[4])
+        
+    }
 }
 
 extension FlightsPageViewController : UIPageViewControllerDataSource {
@@ -54,7 +75,7 @@ extension FlightsPageViewController : UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         // set view controllers
         
-        guard let viewControllerIndex = mockViewControllers.index(of: viewController) else { return nil }
+        guard let viewControllerIndex = mockViewControllers.index(of: viewController as! FlightDetailsViewController) else { return nil }
         
         let previousIndex = viewControllerIndex-1
         
@@ -71,8 +92,8 @@ extension FlightsPageViewController : UIPageViewControllerDataSource {
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-       //
-         guard let viewControllerIndex = mockViewControllers.index(of: viewController) else { return nil }
+        //
+        guard let viewControllerIndex = mockViewControllers.index(of: viewController as! FlightDetailsViewController) else { return nil }
         
         let nextIndex = viewControllerIndex + 1
         
@@ -86,7 +107,7 @@ extension FlightsPageViewController : UIPageViewControllerDataSource {
         }
         
         return mockViewControllers[nextIndex]
-    
+        
     }
 }
 

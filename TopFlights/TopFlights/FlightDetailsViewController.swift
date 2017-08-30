@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class FlightDetailsViewController: UIViewController {
 
@@ -14,15 +15,34 @@ class FlightDetailsViewController: UIViewController {
     @IBOutlet weak var flightDetailsContainer: UIView!
     @IBOutlet weak var flightTitle: UILabel!
     
+    var controllerData : FlightModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if(controllerData != nil)
+        {
+            // setup view
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func refreshData(data: FlightModel) -> Void {
+        controllerData = data
+        // reload UI
+        guard let from = controllerData?.flightFromCity else { return  }
+        guard let to = controllerData?.flightToCity else { return  }
+        
+        let title = String.init(format: "%@ -> %@", from, to )
+        
+        
+        flightTitle.text = title
     }
     
 
