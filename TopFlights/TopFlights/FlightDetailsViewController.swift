@@ -10,50 +10,125 @@ import UIKit
 import SDWebImage
 
 class FlightDetailsViewController: UIViewController {
-
+    
     @IBOutlet weak var destinationImage: UIImageView!
     @IBOutlet weak var flightDetailsContainer: UIView!
     @IBOutlet weak var flightTitle: UILabel!
+    
+    @IBOutlet weak var flightFromTitleLabel: UILabel!
+    @IBOutlet weak var currencyLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var flightToTitleLabel: UILabel!
+    
+    @IBOutlet weak var flightDuration: UILabel!
+    
+    @IBOutlet weak var departureTimeLabel: UILabel!
+    
+    @IBOutlet weak var arrivalTimeLabel: UILabel!
+    @IBOutlet weak var transfersLabel: UILabel!
+    
     
     var controllerData : FlightModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         if(controllerData != nil)
         {
-            // setup view
+            refreshUI()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func refreshData(data: FlightModel) -> Void {
+    func setData(data: FlightModel) -> Void {
         controllerData = data
-        // reload UI
-        guard let from = controllerData?.flightFromCity else { return  }
-        guard let to = controllerData?.flightToCity else { return  }
-        
-        let title = String.init(format: "%@ -> %@", from, to )
-        
-        
-        flightTitle.text = title
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func refreshUI() -> Void {
+        
+        if let data = controllerData {
+            
+            if let from = data.flightFromCity  {
+                if let to = data.flightToCity  {
+                    let title = String.init(format: "%@ ✈ %@", from, to )
+                    flightTitle.text = title
+                    flightFromTitleLabel.text = from
+                    flightToTitleLabel.text = to
+                }
+            }
+            
+            if let price = data.price {
+                priceLabel.text = String(price)
+            }
+            
+            if let currency = data.currency {
+                currencyLabel.text = currency
+            }
+            
+            if let duration = data.flyDuration {
+                flightDuration.text = duration
+            }
+            
+            if let departureTime = data.departureTimeUTC {
+                let dateDeptarture = Date(timeIntervalSince1970: departureTime)
+                let departure = UTCToLocal(date: dateDeptarture, toFormat: "hh:mm a, dd MMM yyyy")
+                departureTimeLabel.text = departure
+            }
+            
+            if let arrivalTime = data.arrivalTimeUTC {
+                let dateArrival = Date(timeIntervalSince1970: arrivalTime )
+                let arrival = UTCToLocal(date: dateArrival, toFormat: "hh:mm a, dd MMM yyyy")
+                arrivalTimeLabel.text = arrival
+            }
+            
+            if let cityImageID = data.flightToCityID {
+                destinationImage.sd_setImage(with: URL(string: String.init(format: FlightsQueryConstants.imageAPI, cityImageID)) , placeholderImage: UIImage.init(named: "earthAirplaneIcon.png"), options: SDWebImageOptions.continueInBackground) { (image, error, cache, url) in
+                    guard let imageErrorDescription = error?.localizedDescription else {return}
+                    print("There was an error, image was not loaded. Error:\(imageErrorDescription)")
+                    print(cityImageID)
+                }
+            }
+            
+            if let transfers = data.routes {
+                let transfersCount = transfers.count
+                transfersLabel.numberOfLines = transfersCount
+                let stringTransferFormat = "%@ ↦ %@\n"
+                var transfersString : String = ""
+                
+                for transfer in transfers {
+                    
+                    guard let transferFrom = transfer.flightFromCity else {return}
+                    guard let transferTo = transfer.flightToCity else {return}
+                    
+                    transfersString.append(String.init(format:stringTransferFormat, transferFrom, transferTo))
+                }
+                
+                if transfersString != ""{
+                    transfersLabel.text = transfersString
+                }
+            }
+        }
     }
-    */
-
+    
+    func UTCToLocal(date:Date, toFormat: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm a, dd MMM yyyy"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        
+        let dt = dateFormatter.date(from: dateFormatter.string(from: date))
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat = toFormat
+        return dateFormatter.string(from: dt!)
+    }
+    
 }

@@ -60,6 +60,9 @@ struct FlightsQueryConstants {
     static let partnerMarketUS = "us"
     static let locale = "locale"
     static let localeEN = "en"
+    
+    // image API
+    static let imageAPI = "https://images.kiwi.com/photos/600/%@.jpg"
 }
 /**
  FlightsDatasource is responsible for preparing all data necessary for controllers. It handles HTTP requests, mapping received data and filtering.

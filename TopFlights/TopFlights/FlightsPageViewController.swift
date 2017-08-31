@@ -48,6 +48,8 @@ class FlightsPageViewController: UIPageViewController {
         }
         
         datasource.refreshFlightsInfo()
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,12 +62,12 @@ class FlightsPageViewController: UIPageViewController {
     }
     
     func refreshControllerData(data: [FlightModel]) -> Void {
-        
-        mockViewControllers[0].refreshData(data:data[0])
-//        mockViewControllers[1].refreshData(data:data[1])
-//        mockViewControllers[2].refreshData(data:data[2])
-//        mockViewControllers[3].refreshData(data:data[3])
-//        mockViewControllers[4].refreshData(data:data[4])
+       
+        mockViewControllers[0].setData(data:data[0])
+        mockViewControllers[1].setData(data:data[1])
+        mockViewControllers[2].setData(data:data[2])
+        mockViewControllers[3].setData(data:data[3])
+        mockViewControllers[4].setData(data:data[4])
         
     }
 }
@@ -81,7 +83,7 @@ extension FlightsPageViewController : UIPageViewControllerDataSource {
         
         guard previousIndex >= 0 else {
             //loop through
-            return mockViewControllers.last
+            return nil
         }
         
         guard mockViewControllers.count > previousIndex else {
@@ -99,7 +101,7 @@ extension FlightsPageViewController : UIPageViewControllerDataSource {
         
         guard nextIndex != mockViewControllers.count else {
             // go to first
-            return mockViewControllers.first
+            return nil
         }
         
         guard mockViewControllers.count > nextIndex else {
@@ -109,13 +111,17 @@ extension FlightsPageViewController : UIPageViewControllerDataSource {
         return mockViewControllers[nextIndex]
         
     }
+    
+    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return mockViewControllers.count
+    }
+    
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return 0
+    }
 }
 
 extension FlightsPageViewController : UIPageViewControllerDelegate {
-    
-    func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return mockViewControllers.count
-    }
     
 }
 

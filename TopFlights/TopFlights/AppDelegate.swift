@@ -1,7 +1,7 @@
 //
 //  AppDelegate.swift
 //  TopFlights
-//
+//  Icons from <a href="https://icons8.com/icon/24062/Airplane-Mode-On">Airplane mode on icon credits</a>
 //  Created by OndrejVyhlidal on 29/08/2017.
 //  Copyright © 2017 ID. All rights reserved.
 //
