@@ -10,7 +10,9 @@
 
 import UIKit
 import Alamofire
-import AlamofireObjectMapper
+import SwiftyJSON
+import CoreData
+
 
 /**
  This delegate is not used. 
@@ -19,9 +21,9 @@ protocol FlightsLoadedDelegate {
     /**
      Delegate method that is called when datasource finishes preparation of data for controller
      - paramethers:
-         - data: Actual data for controllers that should be displayed
+     - data: Actual data for controllers that should be displayed
      */
-    func flighInformationLoade(data: [FlightModel])
+    func flighInformationLoade(data: [TravelItineraryMO])
     
 }
 
@@ -68,19 +70,19 @@ struct FlightsQueryConstants {
  FlightsDatasource is responsible for preparing all data necessary for controllers. It handles HTTP requests, mapping received data and filtering.
  */
 
-class FlightsDatasource: NSObject {
+class FlightsAPI: NSObject {
     
     /**
      Instead of delegate use callback function
      */
-    var onComplete:((_ data : [FlightModel]) -> ())?
+    var onComplete:((_ data : [TravelItineraryMO]) -> ())?
     
     
     /**
      Public method for refresh data. It sends HTTPS GET request with predefined parameters.
      */
-
-    func refreshFlightsInfo() -> Void {
+    
+    func getFlightsInfo() -> Void {
         // obtain current date
         guard let today = getFormatedToday()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             print("Current date was not obtained!")
@@ -95,26 +97,26 @@ class FlightsDatasource: NSObject {
         print(parameters.description)
         
         // make request with base URL, method GET, Parameters, default encoding,  headers could be nil
-        let request = Alamofire.request(FlightsQueryConstants.baseURL,
-                                        method: .get,
-                                        parameters: parameters,
-                                        encoding: URLEncoding.default,
-                                        headers: nil)
+        Alamofire.request(FlightsQueryConstants.baseURL,
+                          method: .get,
+                          parameters: parameters,
+                          encoding: URLEncoding.default,
+                          headers: nil)
             .validate(statusCode: 200...300)
-            .responseObject{(response:DataResponse<FlightModelResponse>) in
-                let jsonResponse = response.result.value
-                
-                guard let flightInfo = jsonResponse?.flightsInfo else {return}
-                
-                self.onComplete?(flightInfo)
-                
-                print(jsonResponse.debugDescription)
+            .responseJSON { response in
+                if let value = response.result.value as? [String: Any] {
+                    print("Dictionary received, lets pass it to core data!")
+                    CoreDataHandler.sharedInstance.saveToCoreDataWithDictionary(dictionary: value)
+                }
         }
-        
-        print(request.debugDescription)
     }
     
-    
+    /**
+     Returns array of query parameters
+     - parameters:
+     - dateFrom: define date from flights will be searched
+     - dateTo: define date to flight will be searched
+     */
     fileprivate func createParams(dateFrom:String, dateTo:String ) -> Parameters {
         // Create array of parameters - version, flyFr
         let parameters : Parameters = [FlightsQueryConstants.version : "2",

@@ -28,7 +28,7 @@ class FlightDetailsViewController: UIViewController {
     @IBOutlet weak var transfersLabel: UILabel!
     
     
-    var controllerData : FlightModel?
+    var controllerData : TravelItineraryMO?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,7 @@ class FlightDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setData(data: FlightModel) -> Void {
+    func setData(data: TravelItineraryMO) -> Void {
         controllerData = data
     }
     
@@ -58,8 +58,10 @@ class FlightDetailsViewController: UIViewController {
         
         if let data = controllerData {
             
+            print(data.description)
+            
             if let from = data.flightFromCity  {
-                if let to = data.flightToCity  {
+                if let to = data.fligltToCity  {
                     let title = String.init(format: "%@ ✈ %@", from, to )
                     flightTitle.text = title
                     flightFromTitleLabel.text = from
@@ -67,9 +69,9 @@ class FlightDetailsViewController: UIViewController {
                 }
             }
             
-            if let price = data.price {
-                priceLabel.text = String(price)
-            }
+            let price = data.price
+            priceLabel.text = String(price)
+            
             
             if let currency = data.currency {
                 currencyLabel.text = currency
@@ -79,17 +81,17 @@ class FlightDetailsViewController: UIViewController {
                 flightDuration.text = duration
             }
             
-            if let departureTime = data.departureTimeUTC {
-                let dateDeptarture = Date(timeIntervalSince1970: departureTime)
-                let departure = UTCToLocal(date: dateDeptarture, toFormat: "hh:mm a, dd MMM yyyy")
-                departureTimeLabel.text = departure
-            }
+            let departureTime = data.departureTimeUTC
+            let dateDeptarture = Date(timeIntervalSince1970: departureTime)
+            let departure = UTCToLocal(date: dateDeptarture, toFormat: "hh:mm a, dd MMM yyyy")
+            departureTimeLabel.text = departure
             
-            if let arrivalTime = data.arrivalTimeUTC {
-                let dateArrival = Date(timeIntervalSince1970: arrivalTime )
-                let arrival = UTCToLocal(date: dateArrival, toFormat: "hh:mm a, dd MMM yyyy")
-                arrivalTimeLabel.text = arrival
-            }
+            
+            let arrivalTime = data.arrivalTimeUTC
+            let dateArrival = Date(timeIntervalSince1970: arrivalTime )
+            let arrival = UTCToLocal(date: dateArrival, toFormat: "hh:mm a, dd MMM yyyy")
+            arrivalTimeLabel.text = arrival
+            
             
             if let cityImageID = data.flightToCityID {
                 destinationImage.sd_setImage(with: URL(string: String.init(format: FlightsQueryConstants.imageAPI, cityImageID)) , placeholderImage: UIImage.init(named: "earthAirplaneIcon.png"), options: SDWebImageOptions.continueInBackground) { (image, error, cache, url) in
@@ -99,26 +101,33 @@ class FlightDetailsViewController: UIViewController {
                 }
             }
             
-            if let transfers = data.routes {
+            if let transfers = data.route {
                 let transfersCount = transfers.count
                 transfersLabel.numberOfLines = transfersCount
-                let stringTransferFormat = "%@ ↦ %@\n"
+                let stringTransferFormat = "%@ ➔ %@\n"
                 var transfersString : String = ""
                 
-                for transfer in transfers {
-                    
-                    guard let transferFrom = transfer.flightFromCity else {return}
-                    guard let transferTo = transfer.flightToCity else {return}
-                    
-                    transfersString.append(String.init(format:stringTransferFormat, transferFrom, transferTo))
-                }
-                
-                if transfersString != ""{
-                    transfersLabel.text = transfersString
-                }
+                //                for transfer in transfers do {
+                //
+                //                    guard let transferFrom = transfer.flightFromCity else {return}
+                //                    guard let transferTo = transfer.flightToCity else {return}
+                //
+                //                    transfersString.append(String.init(format:stringTransferFormat, transferFrom, transferTo))
+                //                }
+                //
+                //                if transfersString != ""{
+                //                    transfersLabel.text = transfersString
+                //                }
             }
         }
     }
+    
+    /**
+     Convert time in UTC to time in local zone and apply format "hh:mm a, dd MMM yyyy"
+     - parameters:
+     - date: Date object that will be converted
+     - toFormat: Format of output string
+     */
     
     func UTCToLocal(date:Date, toFormat: String) -> String {
         let dateFormatter = DateFormatter()

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13233.4" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Flight" representedClassName=".FlightMO" syncable="YES">
+        <attribute name="arrivalTimeUTC" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="combinationID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="departureTimeUTC" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="flightFromCity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flightFromCityID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flightToCityID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fligltToCity" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Route" representedClassName=".RouteMO" parentEntity="Flight" syncable="YES">
+        <attribute name="flightNumber" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="TravelItinerary" representedClassName=".TravelItineraryMO" parentEntity="Flight" syncable="YES">
+        <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="flightFromCountry" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flightsCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="flightToCountry" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flyDuration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="route" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Route" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Flight" positionX="-101" positionY="-198" width="128" height="148"/>
+        <element name="Route" positionX="43" positionY="93" width="128" height="58"/>
+        <element name="TravelItinerary" positionX="-245" positionY="45" width="128" height="178"/>
+    </elements>
+</model>

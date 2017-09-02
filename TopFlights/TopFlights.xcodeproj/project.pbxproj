@@ -15,12 +15,18 @@
 		2D1C91AB1F55C2BC00F4B292 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1C91A91F55C2BC00F4B292 /* LaunchScreen.storyboard */; };
 		2D1C91B61F55C2BD00F4B292 /* TopFlightsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C91B51F55C2BD00F4B292 /* TopFlightsTests.swift */; };
 		2D3E5E5A1F574B07001EB70B /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3E5E591F574B07001EB70B /* SDWebImage.framework */; };
-		2D5DF60B1F55D8B6003C3005 /* FlightsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DF60A1F55D8B6003C3005 /* FlightsDatasource.swift */; };
+		2D5DF60B1F55D8B6003C3005 /* FlightsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DF60A1F55D8B6003C3005 /* FlightsAPI.swift */; };
 		2D5DF60D1F55D8D4003C3005 /* FlightModelResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DF60C1F55D8D4003C3005 /* FlightModelResponse.swift */; };
 		2D5DF60F1F55DDB3003C3005 /* FlightDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DF60E1F55DDB3003C3005 /* FlightDetailsViewController.swift */; };
-		2DAED2E21F55D5C90013BEF4 /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DAED2DF1F55D5C90013BEF4 /* AlamofireObjectMapper.framework */; };
+		2D7778B81F5AA0FA00D200C8 /* TravelItineraryMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7778B61F5AA0FA00D200C8 /* TravelItineraryMO+CoreDataClass.swift */; };
+		2D7778B91F5AA0FA00D200C8 /* TravelItineraryMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7778B71F5AA0FA00D200C8 /* TravelItineraryMO+CoreDataProperties.swift */; };
+		2D9652951F588FBF00D81EBD /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9652941F588FBF00D81EBD /* CoreDataHandler.swift */; };
+		2D9652991F58A4DF00D81EBD /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9652981F58A4DF00D81EBD /* SwiftyJSON.framework */; };
+		2DA93E371F5948A800C40378 /* FlightMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA93E351F5948A800C40378 /* FlightMO+CoreDataClass.swift */; };
+		2DA93E381F5948A800C40378 /* FlightMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA93E361F5948A800C40378 /* FlightMO+CoreDataProperties.swift */; };
+		2DA93E3B1F5948BA00C40378 /* RouteMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA93E391F5948BA00C40378 /* RouteMO+CoreDataClass.swift */; };
+		2DA93E3C1F5948BA00C40378 /* RouteMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA93E3A1F5948BA00C40378 /* RouteMO+CoreDataProperties.swift */; };
 		2DAED2E31F55D5C90013BEF4 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DAED2E01F55D5C90013BEF4 /* Alamofire.framework */; };
-		2DAED2E41F55D5C90013BEF4 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DAED2E11F55D5C90013BEF4 /* ObjectMapper.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,9 +52,17 @@
 		2D1C91B51F55C2BD00F4B292 /* TopFlightsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopFlightsTests.swift; sourceTree = "<group>"; };
 		2D1C91B71F55C2BD00F4B292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D3E5E591F574B07001EB70B /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
-		2D5DF60A1F55D8B6003C3005 /* FlightsDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsDatasource.swift; sourceTree = "<group>"; };
+		2D5DF60A1F55D8B6003C3005 /* FlightsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsAPI.swift; sourceTree = "<group>"; };
 		2D5DF60C1F55D8D4003C3005 /* FlightModelResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightModelResponse.swift; sourceTree = "<group>"; };
 		2D5DF60E1F55DDB3003C3005 /* FlightDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDetailsViewController.swift; sourceTree = "<group>"; };
+		2D7778B61F5AA0FA00D200C8 /* TravelItineraryMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TravelItineraryMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2D7778B71F5AA0FA00D200C8 /* TravelItineraryMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TravelItineraryMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D9652941F588FBF00D81EBD /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
+		2D9652981F58A4DF00D81EBD /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		2DA93E351F5948A800C40378 /* FlightMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlightMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2DA93E361F5948A800C40378 /* FlightMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlightMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2DA93E391F5948BA00C40378 /* RouteMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2DA93E3A1F5948BA00C40378 /* RouteMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2DAED2DF1F55D5C90013BEF4 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
 		2DAED2E01F55D5C90013BEF4 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		2DAED2E11F55D5C90013BEF4 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
@@ -59,10 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DAED2E21F55D5C90013BEF4 /* AlamofireObjectMapper.framework in Frameworks */,
 				2DAED2E31F55D5C90013BEF4 /* Alamofire.framework in Frameworks */,
-				2DAED2E41F55D5C90013BEF4 /* ObjectMapper.framework in Frameworks */,
 				2D3E5E5A1F574B07001EB70B /* SDWebImage.framework in Frameworks */,
+				2D9652991F58A4DF00D81EBD /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,16 +111,13 @@
 		2D1C919C1F55C2BC00F4B292 /* TopFlights */ = {
 			isa = PBXGroup;
 			children = (
+				2D9652971F589E5900D81EBD /* Model */,
 				2D1C919D1F55C2BC00F4B292 /* AppDelegate.swift */,
-				2D1C919F1F55C2BC00F4B292 /* FlightsPageViewController.swift */,
+				2D7778B51F5A9BE000D200C8 /* Controller */,
 				2D1C91A11F55C2BC00F4B292 /* Main.storyboard */,
-				2D5DF60E1F55DDB3003C3005 /* FlightDetailsViewController.swift */,
 				2D1C91A71F55C2BC00F4B292 /* Assets.xcassets */,
 				2D1C91A91F55C2BC00F4B292 /* LaunchScreen.storyboard */,
 				2D1C91AC1F55C2BC00F4B292 /* Info.plist */,
-				2D1C91A41F55C2BC00F4B292 /* TopFlights.xcdatamodeld */,
-				2D5DF60A1F55D8B6003C3005 /* FlightsDatasource.swift */,
-				2D5DF60C1F55D8D4003C3005 /* FlightModelResponse.swift */,
 			);
 			path = TopFlights;
 			sourceTree = "<group>";
@@ -121,9 +131,36 @@
 			path = TopFlightsTests;
 			sourceTree = "<group>";
 		};
+		2D7778B51F5A9BE000D200C8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2D1C919F1F55C2BC00F4B292 /* FlightsPageViewController.swift */,
+				2D5DF60E1F55DDB3003C3005 /* FlightDetailsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2D9652971F589E5900D81EBD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2D9652941F588FBF00D81EBD /* CoreDataHandler.swift */,
+				2D5DF60A1F55D8B6003C3005 /* FlightsAPI.swift */,
+				2D7778B61F5AA0FA00D200C8 /* TravelItineraryMO+CoreDataClass.swift */,
+				2D7778B71F5AA0FA00D200C8 /* TravelItineraryMO+CoreDataProperties.swift */,
+				2D1C91A41F55C2BC00F4B292 /* TopFlights.xcdatamodeld */,
+				2DA93E391F5948BA00C40378 /* RouteMO+CoreDataClass.swift */,
+				2DA93E3A1F5948BA00C40378 /* RouteMO+CoreDataProperties.swift */,
+				2DA93E351F5948A800C40378 /* FlightMO+CoreDataClass.swift */,
+				2DA93E361F5948A800C40378 /* FlightMO+CoreDataProperties.swift */,
+				2D5DF60C1F55D8D4003C3005 /* FlightModelResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2DAED2DE1F55D5C90013BEF4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D9652981F58A4DF00D81EBD /* SwiftyJSON.framework */,
 				2D3E5E591F574B07001EB70B /* SDWebImage.framework */,
 				2DAED2E01F55D5C90013BEF4 /* Alamofire.framework */,
 				2DAED2DF1F55D5C90013BEF4 /* AlamofireObjectMapper.framework */,
@@ -239,9 +276,8 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/AlamofireObjectMapper.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 			);
 			outputPaths = (
 			);
@@ -257,10 +293,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D5DF60D1F55D8D4003C3005 /* FlightModelResponse.swift in Sources */,
+				2D9652951F588FBF00D81EBD /* CoreDataHandler.swift in Sources */,
 				2D1C91A61F55C2BC00F4B292 /* TopFlights.xcdatamodeld in Sources */,
 				2D1C91A01F55C2BC00F4B292 /* FlightsPageViewController.swift in Sources */,
-				2D5DF60B1F55D8B6003C3005 /* FlightsDatasource.swift in Sources */,
+				2DA93E381F5948A800C40378 /* FlightMO+CoreDataProperties.swift in Sources */,
+				2D7778B81F5AA0FA00D200C8 /* TravelItineraryMO+CoreDataClass.swift in Sources */,
+				2D5DF60B1F55D8B6003C3005 /* FlightsAPI.swift in Sources */,
+				2DA93E371F5948A800C40378 /* FlightMO+CoreDataClass.swift in Sources */,
+				2DA93E3B1F5948BA00C40378 /* RouteMO+CoreDataClass.swift in Sources */,
+				2DA93E3C1F5948BA00C40378 /* RouteMO+CoreDataProperties.swift in Sources */,
 				2D1C919E1F55C2BC00F4B292 /* AppDelegate.swift in Sources */,
+				2D7778B91F5AA0FA00D200C8 /* TravelItineraryMO+CoreDataProperties.swift in Sources */,
 				2D5DF60F1F55DDB3003C3005 /* FlightDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
