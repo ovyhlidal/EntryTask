@@ -70,20 +70,21 @@ class CoreDataHandler : NSObject{
     }
     
     /**
-     
+     Inserts new MO object, mapps all fields
      */
     
     private func createTravelItineraryFrom(dictionary: [String:Any]) -> NSManagedObject? {
-        let context = CoreDataHandler.sharedInstance.persistentContainer.viewContext
+        // Due to using only one context saving of data is on main thread thus blocking UI, this should be changed.
+        let context = persistentContainer.viewContext
         
         if let travelItineraryEntity = NSEntityDescription.insertNewObject(forEntityName: "TravelItinerary", into: context) as? TravelItineraryMO {
             
             if let cityFrom = dictionary["cityFrom"] as? String {
-                 travelItineraryEntity.flightFromCity = cityFrom
+                travelItineraryEntity.flightFromCity = cityFrom
             }
             
             if let cityTo = dictionary["cityTo"] as? String {
-                travelItineraryEntity.fligltToCity = cityTo
+                travelItineraryEntity.flightToCity = cityTo
             }
             
             if let cityFromID = dictionary["mapIdfrom"] as? String {
@@ -100,7 +101,7 @@ class CoreDataHandler : NSObject{
             }
             
             if let countryTo =  dictionary["countryTo"] as? [String: Any] {
-                travelItineraryEntity.flightFromCountry = countryTo["name"] as? String
+                travelItineraryEntity.flightToCountry = countryTo["name"] as? String
             }
             
             if let flightCount = dictionary["pnr_count"] as? Int16 {
@@ -122,7 +123,11 @@ class CoreDataHandler : NSObject{
             }
             
             travelItineraryEntity.currency = "EUR" // Hardcoded value. Can be obtained thru API
-            travelItineraryEntity.dateCreated = Date() as NSDate
+            
+            
+            let date =  Calendar.current.startOfDay(for: Date()) as NSDate
+            
+            travelItineraryEntity.dateCreated = date
             
             travelItineraryEntity.flyDuration = dictionary["fly_duration"] as? String
             
@@ -132,7 +137,7 @@ class CoreDataHandler : NSObject{
                     
                     if let routeMO = NSEntityDescription.insertNewObject(forEntityName: "Route", into: context) as? RouteMO {
                         routeMO.flightFromCity = route["cityFrom"] as? String
-                        routeMO.fligltToCity = route["cityTo"] as? String
+                        routeMO.flightToCity = route["cityTo"] as? String
                         routeMO.flightFromCityID = route["mapIdfrom"] as? String
                         routeMO.flightToCityID = route["mapIdto"] as? String
                         routeMO.flightNumber = route["flight_no"] as? String
@@ -170,7 +175,7 @@ class CoreDataHandler : NSObject{
         
         // save context
         do {
-            try CoreDataHandler.sharedInstance.persistentContainer.viewContext.save()
+            try persistentContainer.viewContext.save()
         } catch let error {
             print("Objects not sucessfully saved, error: \(error)")
         }

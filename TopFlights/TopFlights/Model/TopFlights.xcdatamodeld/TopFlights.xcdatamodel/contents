@@ -6,8 +6,8 @@
         <attribute name="departureTimeUTC" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="flightFromCity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="flightFromCityID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flightToCity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="flightToCityID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="fligltToCity" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Route" representedClassName=".RouteMO" parentEntity="Flight" syncable="YES">
         <attribute name="flightNumber" optional="YES" attributeType="String" syncable="YES"/>
