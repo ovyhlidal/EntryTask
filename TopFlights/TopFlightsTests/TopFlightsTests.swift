@@ -11,6 +11,9 @@ import XCTest
 
 class TopFlightsTests: XCTestCase {
     
+    let viewController = FlightsPageViewController()
+    
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -31,6 +34,14 @@ class TopFlightsTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testInitViewControllers() {
+        
+        let vcArray = viewController.flightDetailsViewControllers
+       
+        // assert that view controller lazy property is initialized when acces with right number of controllers
+        XCTAssertTrue(vcArray.count == 5 )
     }
     
 }

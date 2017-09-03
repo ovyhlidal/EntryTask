@@ -79,7 +79,6 @@ class FlightsAPI: NSObject {
     
     func getFlightsInfo(offset:Bool) -> Void {
         
-        
         // download new data -> offset set to 0
         lastOffset = offset ? lastOffset : 0
         
@@ -127,6 +126,7 @@ class FlightsAPI: NSObject {
                             }
                             
                         }
+                        // create objects in context and store
                         CoreDataHandler.sharedInstance.saveToCoreDataWithDictionary(dictionary: value)
                     }
                     

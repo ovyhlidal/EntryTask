@@ -18,7 +18,7 @@ extension TravelItineraryMO {
     }
 
     @NSManaged public var currency: String?
-    @NSManaged public var dateCreated: NSDate?
+    @NSManaged public var dateCreated: Date?
     @NSManaged public var distance: Double
     @NSManaged public var flightFromCountry: String?
     @NSManaged public var flightsCount: Int16

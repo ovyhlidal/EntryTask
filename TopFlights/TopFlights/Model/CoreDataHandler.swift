@@ -125,7 +125,7 @@ class CoreDataHandler : NSObject{
             travelItineraryEntity.currency = "EUR" // Hardcoded value. Can be obtained thru API
             
             
-            let date =  Calendar.current.startOfDay(for: Date()) as NSDate
+            let date =  Calendar.current.startOfDay(for: Date())
             
             travelItineraryEntity.dateCreated = date
             
