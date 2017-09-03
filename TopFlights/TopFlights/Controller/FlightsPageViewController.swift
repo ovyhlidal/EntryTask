@@ -25,11 +25,14 @@ class FlightsPageViewController: UIPageViewController {
         let today = Calendar.current.startOfDay(for: Date())
         if let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: Date()) {
             // Set predicate with range for start of the day and end <- get only values for today
-            
             let datePredicate = NSPredicate(format: "(%@ <= dateCreated) AND (dateCreated < %@)", argumentArray: [today, nextDay])
             fetchRequest.predicate = datePredicate
         }
         
+        /* This solution doesn't return distinct values thus there needs to be method for additional sorting to fullfill unique requirements.
+         I can change fetch result to return dictionary instead of MO, I can select which properties to fetch. As a result I can
+         get all values that have unique combinationID, but I was not successful to get to-Many property. 
+         */
         let fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataHandler.sharedInstance.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         
         return fetchResultController
@@ -65,7 +68,9 @@ class FlightsPageViewController: UIPageViewController {
         }
     }
     
-    
+    /**
+     Convinience method for init of FlightDetailsViewController
+     */
     private func instantiateViewController() -> FlightDetailsViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FlightDetailsViewController") as! FlightDetailsViewController
     }

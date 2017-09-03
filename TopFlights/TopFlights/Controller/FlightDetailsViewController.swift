@@ -50,7 +50,7 @@ class FlightDetailsViewController: UIViewController {
         }
     }
     
-    func setData(data: TravelItineraryMO) -> Void {
+    func setData(data: TravelItineraryMO) {
         controllerData = data
     }
     
@@ -104,7 +104,7 @@ class FlightDetailsViewController: UIViewController {
      */
     fileprivate func setArrivalTime(arrivalTime: Double) {
         let dateArrival = Date(timeIntervalSince1970: arrivalTime )
-        let arrival = UTCToLocal(date: dateArrival, toFormat: FlightDetailsViewController.timeFormat)
+        let arrival = convertUTCToLocal(date: dateArrival, toFormat: FlightDetailsViewController.timeFormat)
         arrivalTimeLabel.text = arrival
     }
     
@@ -115,7 +115,7 @@ class FlightDetailsViewController: UIViewController {
      */
     fileprivate func setDepartureTime(departureTime: Double) {
         let dateDeptarture = Date(timeIntervalSince1970: departureTime)
-        let departure = UTCToLocal(date: dateDeptarture, toFormat: FlightDetailsViewController.timeFormat)
+        let departure = convertUTCToLocal(date: dateDeptarture, toFormat: FlightDetailsViewController.timeFormat)
         departureTimeLabel.text = departure
     }
     
@@ -158,7 +158,7 @@ class FlightDetailsViewController: UIViewController {
      - toFormat: Format of output string
      */
     
-    fileprivate func UTCToLocal(date:Date, toFormat: String) -> String {
+    fileprivate func convertUTCToLocal(date:Date, toFormat: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm a, dd MMM yyyy"
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")

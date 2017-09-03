@@ -23,6 +23,7 @@
 		2D7778BC1F5B16F400D200C8 /* FlightMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7778BA1F5B16F400D200C8 /* FlightMO+CoreDataClass.swift */; };
 		2D7778BD1F5B16F400D200C8 /* FlightMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7778BB1F5B16F400D200C8 /* FlightMO+CoreDataProperties.swift */; };
 		2D7778BF1F5B382A00D200C8 /* FlightDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7778BE1F5B382A00D200C8 /* FlightDetailsViewControllerTests.swift */; };
+		2D7778C01F5C1A3700D200C8 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3E5E591F574B07001EB70B /* SDWebImage.framework */; };
 		2D9652951F588FBF00D81EBD /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9652941F588FBF00D81EBD /* CoreDataHandler.swift */; };
 		2D9652991F58A4DF00D81EBD /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9652981F58A4DF00D81EBD /* SwiftyJSON.framework */; };
 		2DA93E3B1F5948BA00C40378 /* RouteMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA93E391F5948BA00C40378 /* RouteMO+CoreDataClass.swift */; };
@@ -85,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D7778C01F5C1A3700D200C8 /* SDWebImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +506,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XH5SF2JUW3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TopFlightsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ID.TopFlightsTests;
@@ -521,6 +527,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XH5SF2JUW3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TopFlightsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ID.TopFlightsTests;
